@@ -2,33 +2,53 @@
 
 namespace ConsoleApp
 {
-    public delegate int Delegat(int a, int b);
+    using System;
 
-    class Program
+    namespace task1
     {
-        static void Main()
+        public delegate int MyDelegat(int a, int b);
+
+        class Program
         {
-            Console.WriteLine("Введіть 3 цілі числа.");
-            string a = Console.ReadLine();
-            Console.WriteLine("а = ");
-            int x = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("b = ");
-            int y = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("c = ");
-            int z = Convert.ToInt32(Console.ReadLine());
+            static void Main()
             {
-                case "+":
-                    Delegat Delegat = (c, b, a) => { return c + b + a; };
-                    int del = Delegat(x, y, z);
-                    Console.WriteLine("a+b+c = ", del);
-                    break;
-                default:
-                    Console.WriteLine("Недоступна операцiя");
-                    break;
+                Console.WriteLine("Виберiть дiю +,-,*,/");
+                string a = Console.ReadLine();
+                Console.WriteLine("а = ");
+                int x = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("b = ");
+                int y = Convert.ToInt32(Console.ReadLine());
+                switch (a)
+                {
+                    case "+":
+                        MyDelegat myDelegat = (c, b) => { return c + b; };
+                        int del = myDelegat(x, y);
+                        Console.WriteLine("a+b = ", del);
+                        break;
+                    case "-":
+                        MyDelegat myDelegat1 = (c, b) => { return c - b; };
+                        int del1 = myDelegat1(x, y);
+                        Console.WriteLine("a-b = ", del1);
+                        break;
+                    case "*":
+                        MyDelegat myDelegat2 = (c, b) => { return c * b; };
+                        int del2 = myDelegat2(x, y);
+                        Console.WriteLine("a*b = ", del2);
+                        break;
+                    case "/":
+                        MyDelegat myDelegat3 = (c, b) => { return c / b; };
+                        int del3 = myDelegat3(x, y);
+                        Console.WriteLine("a/b = ", del3);
+                        break;
+                    default:
+                        Console.WriteLine("Дана операцiя недоступна...");
+                        break;
+                }
+
+                Console.ReadKey();
+
             }
-
-            Console.ReadKey();
-
         }
     }
+}
 }

@@ -37,7 +37,7 @@ namespace ConsoleApp2
                 return sr / array.Length;
             };
 
-            Console.WriteLine("Среднє арифметичне = {0}", d(array));
+            Console.WriteLine("Сeреднє арифметичне = {0}", d(array));
             Console.WriteLine(new string('-', 100));
 
             for (int i = 0; i < array.Length; i++)
