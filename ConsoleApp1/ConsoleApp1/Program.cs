@@ -1,54 +1,59 @@
 ﻿using System;
 
-namespace ConsoleApp
+namespace Calculator
 {
-    using System;
+    public delegate double Delegat(double a, double b);
+    public delegate void Action();
+    public delegate void Action<in T>(T obj);
 
-    namespace task1
+    class Program
     {
-        public delegate int MyDelegat(int a, int b);
-
-        class Program
+        static void Main(string[] args)
         {
-            static void Main()
+            void DoCalculation(double a, double b, Action<double, double> op) => op(a, b);
+            void Add(double x, double y) => Console.WriteLine($"{x} + {y} = {x + y}");
+            void Sub(double x, double y) => Console.WriteLine($"{x} - {y} = {x - y}");
+            void Mul(double x, double y) => Console.WriteLine($"{x} * {y} = {x * y}");
+            void Div(double x, double y) => Console.WriteLine($"{x} / {y} = {x / y}");
+
+            Console.Write("a = ");
+            double a = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введiть дiю (+,-,*,/): ");
+            string x = Console.ReadLine();
+
+            Console.Write("b = ");
+            double b = Convert.ToInt32(Console.ReadLine());
+
+            switch (x)
             {
-                Console.WriteLine("Виберiть дiю +,-,*,/");
-                string a = Console.ReadLine();
-                Console.WriteLine("а = ");
-                int x = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("b = ");
-                int y = Convert.ToInt32(Console.ReadLine());
-                switch (a)
-                {
-                    case "+":
-                        MyDelegat myDelegat = (c, b) => { return c + b; };
-                        int del = myDelegat(x, y);
-                        Console.WriteLine("a+b = ", del);
-                        break;
-                    case "-":
-                        MyDelegat myDelegat1 = (c, b) => { return c - b; };
-                        int del1 = myDelegat1(x, y);
-                        Console.WriteLine("a-b = ", del1);
-                        break;
-                    case "*":
-                        MyDelegat myDelegat2 = (c, b) => { return c * b; };
-                        int del2 = myDelegat2(x, y);
-                        Console.WriteLine("a*b = ", del2);
-                        break;
-                    case "/":
-                        MyDelegat myDelegat3 = (c, b) => { return c / b; };
-                        int del3 = myDelegat3(x, y);
-                        Console.WriteLine("a/b = ", del3);
-                        break;
-                    default:
-                        Console.WriteLine("Дана операцiя недоступна...");
-                        break;
-                }
+                case "+":
+                    DoCalculation(a, b, Add);
+                    break;
 
-                Console.ReadKey();
+                case "-":
+                    DoCalculation(a, b, Sub);
+                    break;
 
+                case "*":
+                    DoCalculation(a, b, Mul);
+                    break;
+
+                case "/":
+                    if (b == 0)
+                    {
+                        Console.WriteLine("На нуль ділити не можна.");
+                    }
+                    else
+                    {
+                        DoCalculation(a, b, Div);
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Введiть доступну дiю (+,-,*,/).");
+                    break;
             }
         }
     }
-}
 }
