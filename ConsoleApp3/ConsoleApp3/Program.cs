@@ -1,24 +1,26 @@
 ﻿using System;
 
-namespace ConsoleApp3
+namespace MiddleNumber
 {
     class Program
     {
-             static void Calculate(int a, int b, int c)
+        static void MidCalc(int a, int b, int c)
         {
-            Console.WriteLine("Среднее арифметическое: " + ((a + b + c) / 3).ToString());
-            Console.ReadKey();
+            Console.WriteLine($"Результат: " + ((a + b + c) / 3));
+            Console.WriteLine();
         }
+        static void Main(string[] args)
         {
-            int a, b, c;
-            Console.WriteLine("Введите 1 значение");
-            a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите 2 значение");
-            b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите 3 значение");
-            c = Convert.ToInt32(Console.ReadLine());
+            Console.Write("a = ");
+            int a = int.Parse(Console.ReadLine());
 
-         
+            Console.Write("b = ");
+            int b = int.Parse(Console.ReadLine());
+
+            Console.Write("c = ");
+            int c = int.Parse(Console.ReadLine());
+
+            MidCalc(a, b, c);
         }
     }
 }
